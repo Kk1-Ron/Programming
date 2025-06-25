@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Management System</title>
+</head>
+<body>
+
+    <div>
+        <h1>Database Management System</h1>
+
+        <!-- What is normalization? Section -->
+        <section>
+            <h2>What is normalization? Explain 1NF, 2NF, 3NF with examples.</h2>
+            <p>
+                <strong>Normalization</strong> is a systematic process of organizing the columns and tables of a relational database to minimize data redundancy and improve data integrity. It aims to eliminate anomalous situations like insertion, update, and deletion anomalies, which can occur when data is not properly structured. The process involves decomposing tables into smaller, more manageable tables and defining relationships between them, following a set of rules called normal forms.
+            </p>
+            <h3>Normal Forms:</h3>
+            <ol>
+                <li>
+                    <strong>First Normal Form (1NF):</strong>
+                    <ul>
+                        <li><strong>Definition:</strong> A relation (table) is in 1NF if and only if every attribute (column) is <strong>atomic</strong> (indivisible) and there are no repeating groups (multiple values in a single cell). Each cell should contain only a single value, and each column should have a unique name.</li>
+                        <li><strong>Example (Before 1NF):</strong>
+                            <pre><code>
+| StudentID | StudentName | Course        |
+| :-------- | :---------- | :------------ |
+| 101       | Alice       | Math, Physics |
+| 102       | Bob         | Chem          |
+                            </code></pre>
+                        </li>
+                        <li><strong>Example (After 1NF):</strong>
+                            <pre><code>
+| StudentID | StudentName | Course  |
+| :-------- | :---------- | :------ |
+| 101       | Alice       | Math    |
+| 101       | Alice       | Physics |
+| 102       | Bob         | Chem    |
+                            </code></pre>
+                            <em>(Here, <code>Course</code> column has atomic values, and there are no repeating groups.)</em>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Second Normal Form (2NF):</strong>
+                    <ul>
+                        <li><strong>Definition:</strong> A relation is in 2NF if it is already in 1NF <strong>AND</strong> all non-key attributes are fully functionally dependent on the <em>entire</em> primary key. This means no non-key attribute should be dependent on only a part of a composite primary key.</li>
+                        <li><strong>Example (Before 2NF - Composite Key: <code>(OrderID, ProductID)</code>):</strong>
+                            <pre><code>
+| OrderID | ProductID | Quantity | OrderDate  | CustomerName |
+| :------ | :-------- | :------- | :--------- | :----------- |
+| O1      | P1        | 2        | 2023-01-15 | John Doe     |
+| O1      | P2        | 1        | 2023-01-15 | John Doe     |
+                            </code></pre>
+                        </li>
+                        <li><strong>Problem:</strong> <code>OrderDate</code> and <code>CustomerName</code> depend only on <code>OrderID</code> (part of the composite key), not <code>ProductID</code>.</li>
+                        <li><strong>Example (After 2NF):</strong>
+                            <p><strong>Orders Table:</strong></p>
+                            <pre><code>
+| OrderID | OrderDate  | CustomerName |
+| :------ | :--------- | :----------- |
+| O1      | 2023-01-15 | John Doe     |
+                            </code></pre>
+                            <p><strong>Order_Items Table:</strong></p>
+                            <pre><code>
+| OrderID | ProductID | Quantity |
+| :------ | :-------- | :------- |
+| O1      | P1        | 2        |
+| O1      | P2        | 1        |
+                            </code></pre>
+                            <em>(Now, <code>OrderDate</code> and <code>CustomerName</code> are in a separate table, fully dependent on <code>OrderID</code>. <code>Quantity</code> is fully dependent on <code>(OrderID, ProductID)</code>.)</em>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Third Normal Form (3NF):</strong>
+                    <ul>
+                        <li><strong>Definition:</strong> A relation is in 3NF if it is already in 2NF <strong>AND</strong> there are no transitive functional dependencies. This means no non-key attribute should be dependent on another non-key attribute.</li>
+                        <li><strong>Example (Before 3NF):</strong>
+                            <p><strong>Employees Table:</strong></p>
+                            <pre><code>
+| EmployeeID | EmployeeName | DepartmentName | DepartmentLocation |
+| :--------- | :----------- | :------------- | :----------------- |
+| E1         | Alice        | HR             | Building A         |
+| E2         | Bob          | IT             | Building B         |
+                            </code></pre>
+                        </li>
+                        <li><strong>Problem:</strong> <code>DepartmentLocation</code> depends on <code>DepartmentName</code>, and <code>DepartmentName</code> is a non-key attribute. So, <code>DepartmentLocation</code> is transitively dependent on <code>EmployeeID</code> via <code>DepartmentName</code>.</li>
+                        <li><strong>Example (After 3NF):</strong>
+                            <p><strong>Employees Table:</strong></p>
+                            <pre><code>
+| EmployeeID | EmployeeName | DepartmentName |
+| :--------- | :----------- | :------------- |
+| E1         | Alice        | HR             |
+| E2         | Bob          | IT             |
+                            </code></pre>
+                            <p><strong>Departments Table:</strong></p>
+                            <pre><code>
+| DepartmentName | DepartmentLocation |
+| :------------- | :----------------- |
+| HR             | Building A         |
+| IT             | Building B         |
+                            </code></pre>
+                            <em>(Now, <code>DepartmentLocation</code> is dependent only on <code>DepartmentName</code>, which is the primary key of the <code>Departments</code> table. This eliminates the transitive dependency.)</em>
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <!-- Explain the different types of database models Section -->
+        <section>
+            <h2>Explain the different types of database models with merits and demerits.</h2>
+            <p>
+                A <strong>database model</strong> defines the logical structure of a database, outlining how data is stored, organized, and manipulated. It dictates the relationships between data elements and the constraints that govern them.
+            </p>
+            <h3>Different Types of Database Models:</h3>
+            <ol>
+                <li>
+                    <strong>Hierarchical Model:</strong>
+                    <ul>
+                        <li><strong>Structure:</strong> Data is organized in a tree-like structure, with a parent-child relationship. Each child record has only one parent, but a parent can have multiple children. Data access starts from the root node.</li>
+                        <li><strong>Merits:</strong>
+                            <ul>
+                                <li>Simple to understand and navigate for certain types of data.</li>
+                                <li>Efficient for one-to-many relationships.</li>
+                                <li>Data integrity is naturally maintained through parent-child links.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Demerits:</strong>
+                            <ul>
+                                <li>Lack of flexibility for complex relationships (e.g., many-to-many).</li>
+                                <li>Difficult to make changes to the structure once defined.</li>
+                                <li>Redundancy can occur if a child record needs to be linked to multiple parents.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Network Model:</strong>
+                    <ul>
+                        <li><strong>Structure:</strong> An extension of the hierarchical model, allowing a child record to have multiple parent records (many-to-many relationships). It uses pointers to represent relationships.</li>
+                        <li><strong>Merits:</strong>
+                            <ul>
+                                <li>More flexible than the hierarchical model, supporting many-to-many relationships.</li>
+                                <li>Improved data access performance due to predefined paths.</li>
+                                <li>Reduces data redundancy compared to the hierarchical model.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Demerits:</strong>
+                            <ul>
+                                <li>Complex to design and manage due to intricate data relationships.</li>
+                                <li>Changes to the schema are difficult to implement.</li>
+                                <li>Application programs are tightly coupled with the database structure.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Relational Model:</strong>
+                    <ul>
+                        <li><strong>Structure:</strong> Data is organized into two-dimensional tables called relations, consisting of rows (records/tuples) and columns (attributes/fields). Relationships between tables are established using common columns (keys). This is the most widely used model today.</li>
+                        <li><strong>Merits:</strong>
+                            <ul>
+                                <li><strong>Simplicity:</strong> Easy to understand, design, and implement.</li>
+                                <li><strong>Flexibility:</strong> Supports complex queries using SQL, allowing data to be retrieved and manipulated easily.</li>
+                                <li><strong>Data Integrity:</strong> Enforces data integrity through primary keys, foreign keys, and referential integrity constraints.</li>
+                                <li><strong>Redundancy Reduction:</strong> Achieved through normalization.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Demerits:</strong>
+                            <ul>
+                                <li>Performance can degrade with very large databases and complex joins.</li>
+                                <li>Does not naturally support complex data types (e.g., multimedia).</li>
+                                <li>Can be slower for very specific types of queries compared to optimized non-relational models.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Object-Oriented Model:</strong>
+                    <ul>
+                        <li><strong>Structure:</strong> Data and its relationships are stored as objects, similar to object-oriented programming paradigms. Objects have attributes (data) and methods (operations).</li>
+                        <li><strong>Merits:</strong>
+                            <ul>
+                                <li>Handles complex data types (audio, video, graphics) more naturally.</li>
+                                <li>Supports inheritance, encapsulation, and polymorphism, aligning well with OOP languages.</li>
+                                <li>Better performance for certain complex applications.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Demerits:</strong>
+                            <ul>
+                                <li>Lack of a universal standard, leading to interoperability issues.</li>
+                                <li>Less mature technology and fewer tools compared to relational databases.</li>
+                                <li>Complex to design and implement for traditional business applications.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <!-- What is SQL? Section -->
+        <section>
+            <h2>What is SQL? Explain DDL, DML, DCL database language.</h2>
+            <p>
+                <strong>SQL (Structured Query Language)</strong> is a standard programming language designed for managing and manipulating relational databases. It is used to perform various operations such as creating database schemas, retrieving data, updating data, and managing user permissions. SQL provides a powerful and flexible way to interact with databases, allowing users and applications to communicate with the database management system (DBMS).
+            </p>
+            <p>SQL is broadly categorized into several sub-languages based on the type of operations they perform:</p>
+            <ol>
+                <li>
+                    <strong>Data Definition Language (DDL):</strong>
+                    <ul>
+                        <li><strong>Purpose:</strong> DDL commands are used to define, modify, and delete the database schema or structure. They deal with database objects like tables, indexes, views, and sequences.</li>
+                        <li><strong>Commands:</strong>
+                            <ul>
+                                <li><code>CREATE</code>: Used to create new database objects (e.g., <code>CREATE TABLE Students (ID INT, Name VARCHAR(50));</code>).</li>
+                                <li><code>ALTER</code>: Used to modify the structure of existing database objects (e.g., <code>ALTER TABLE Students ADD COLUMN Age INT;</code>).</li>
+                                <li><code>DROP</code>: Used to delete existing database objects (e.g., <code>DROP TABLE Students;</code>).</li>
+                                <li><code>TRUNCATE</code>: Used to remove all records from a table, including space allocated for the records, but retains the table structure (e.g., <code>TRUNCATE TABLE Students;</code>).</li>
+                                <li><code>RENAME</code>: Used to rename a database object (e.g., <code>RENAME TABLE Students TO EnrolledStudents;</code>).</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Data Manipulation Language (DML):</strong>
+                    <ul>
+                        <li><strong>Purpose:</strong> DML commands are used for managing data within the database objects. They allow users to retrieve, insert, update, and delete data.</li>
+                        <li><strong>Commands:</strong>
+                            <ul>
+                                <li><code>SELECT</code>: Used to retrieve data from one or more tables (e.g., <code>SELECT * FROM Students WHERE Age > 20;</code>).</li>
+                                <li><code>INSERT</code>: Used to add new rows of data into a table (e.g., <code>INSERT INTO Students (ID, Name, Age) VALUES (101, 'Alice', 22);</code>).</li>
+                                <li><code>UPDATE</code>: Used to modify existing data in a table (e.g., <code>UPDATE Students SET Age = 23 WHERE ID = 101;</code>).</li>
+                                <li><code>DELETE</code>: Used to remove rows of data from a table (e.g., <code>DELETE FROM Students WHERE Age < 20;</code>).</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Data Control Language (DCL):</strong>
+                    <ul>
+                        <li><strong>Purpose:</strong> DCL commands are used to control access to data in the database. They manage user permissions and access rights, ensuring security and integrity.</li>
+                        <li><strong>Commands:</strong>
+                            <ul>
+                                <li><code>GRANT</code>: Used to give specific privileges/permissions to users on database objects (e.g., <code>GRANT SELECT ON Students TO user1;</code>).</li>
+                                <li><code>REVOKE</code>: Used to remove previously granted privileges from users (e.g., <code>REVOKE DELETE ON Students FROM user1;</code>).</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <!-- Define the term DBA. Section -->
+        <section>
+            <h2>Define the term DBA. Explain his/her roles.</h2>
+            <p>
+                <strong>DBA (Database Administrator)</strong> is an IT professional responsible for the effective and efficient management, maintenance, security, and operation of a database management system (DBMS) and the databases it contains. A DBA ensures the availability, integrity, and performance of the database systems that are critical for an organization's operations.
+            </p>
+            <h3>Roles and Responsibilities of a DBA:</h3>
+            <ol>
+                <li><strong>Database Installation and Configuration:</strong>
+                    <ul>
+                        <li>Installs and configures database software (e.g., Oracle, SQL Server, MySQL).</li>
+                        <li>Sets up the database environment, including memory allocation, storage paths, and network configurations.</li>
+                    </ul>
+                </li>
+                <li><strong>Database Design and Development Support:</strong>
+                    <ul>
+                        <li>Works with developers to design efficient database schemas, tables, views, and indexes.</li>
+                        <li>Ensures adherence to normalization rules and best practices for data modeling.</li>
+                        <li>Assists in writing and optimizing complex SQL queries and stored procedures.</li>
+                    </ul>
+                </li>
+                <li><strong>Performance Monitoring and Tuning:</strong>
+                    <ul>
+                        <li>Monitors database performance, identifies bottlenecks, and resolves performance issues.</li>
+                        <li>Optimizes queries, tunes database parameters, and manages indexing to ensure fast data retrieval and manipulation.</li>
+                    </ul>
+                </li>
+                <li><strong>Security Management:</strong>
+                    <ul>
+                        <li>Manages user accounts, roles, and permissions to control access to database objects.</li>
+                        <li>Implements security policies, conducts security audits, and ensures compliance with data protection regulations.</li>
+                        <li>Protects data from unauthorized access, modification, or deletion.</li>
+                    </ul>
+                </li>
+                <li><strong>Backup and Recovery:</strong>
+                    <ul>
+                        <li>Establishes and implements robust backup and recovery strategies to prevent data loss.</li>
+                        <li>Regularly performs and tests database backups.</li>
+                        <li>Recovers databases in case of hardware failure, corruption, or disaster.</li>
+                    </ul>
+                </li>
+                <li><strong>Data Integrity and Consistency:</strong>
+                    <ul>
+                        <li>Ensures that data within the database remains accurate, consistent, and reliable.</li>
+                        <li>Implements constraints, triggers, and validation rules to maintain data integrity.</li>
+                    </ul>
+                </li>
+                <li><strong>Troubleshooting and Support:</strong>
+                    <ul>
+                        <li>Diagnoses and resolves database-related problems and errors.</li>
+                        <li>Provides technical support to users and application developers.</li>
+                    </ul>
+                </li>
+                <li><strong>Capacity Planning and Upgrades:</strong>
+                    <ul>
+                        <li>Monitors storage usage and plans for future capacity requirements.</li>
+                        <li>Manages database upgrades and patches to newer versions of the DBMS.</li>
+                    </ul>
+                </li>
+            </ol>
+            <p>In essence, a DBA is the custodian of an organization's data assets, ensuring they are always available, secure, performant, and reliable.</p>
+        </section>
+
+        <!-- What is database model? Section -->
+        <section>
+            <h2>What is database model? Explain any two types.</h2>
+            <p>
+                A <strong>database model</strong> is a theoretical framework or structure that defines how data is logically organized, stored, and managed within a database. It specifies the rules and methods for representing data, relationships between data elements, and the operations that can be performed on the data. The choice of database model significantly influences how data is accessed, manipulated, and queried.
+            </p>
+            <p>Let's explain two common types of database models:</p>
+            <ol>
+                <li>
+                    <strong>Relational Model:</strong>
+                    <ul>
+                        <li><strong>Concept:</strong> The relational model, proposed by E.F. Codd, is the most widely adopted database model. It organizes data into two-dimensional tables, known as relations. Each table consists of rows (records or tuples) and columns (attributes or fields). Relationships between different tables are established through common columns called keys (primary keys and foreign keys).</li>
+                        <li><strong>Characteristics:</strong>
+                            <ul>
+                                <li><strong>Tables (Relations):</strong> Data is stored in tables. Each table represents an entity (e.g., <code>Students</code>, <code>Courses</code>).</li>
+                                <li><strong>Rows (Tuples):</strong> Each row in a table represents a unique record or instance of the entity.</li>
+                                <li><strong>Columns (Attributes):</strong> Each column represents a specific property or attribute of the entity.</li>
+                                <li><strong>Primary Key:</strong> A column or set of columns that uniquely identifies each row in a table.</li>
+                                <li><strong>Foreign Key:</strong> A column (or set of columns) in one table that refers to the primary key in another table, establishing a link between them.</li>
+                                <li><strong>Normalization:</strong> Employs techniques like normalization to reduce data redundancy and improve data integrity.</li>
+                                <li><strong>SQL:</strong> Uses Structured Query Language (SQL) for data definition, manipulation, and control.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Example:</strong> A database for a school might have a <code>Students</code> table and a <code>Courses</code> table. A <code>StudentCourses</code> table would link students to the courses they are enrolled in using <code>StudentID</code> and <code>CourseID</code> as foreign keys.</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Hierarchical Model:</strong>
+                    <ul>
+                        <li><strong>Concept:</strong> The hierarchical database model organizes data in a tree-like structure, similar to a file system. Data records are linked together in parent-child relationships. Each "child" record has only one "parent" record, but a "parent" record can have multiple "children." Data is accessed by navigating down the tree from the root node.</li>
+                        <li><strong>Characteristics:</strong>
+                            <ul>
+                                <li><strong>Tree Structure:</strong> Data is represented as a collection of records connected by links, forming a hierarchy.</li>
+                                <li><strong>Parent-Child Relationship:</strong> A one-to-many relationship where one parent record can have many child records, but a child record can have only one parent.</li>
+                                <li><strong>Root Node:</strong> The top-level record from which all other records originate.</li>
+                                <li><strong>Navigational Access:</strong> Data retrieval requires traversing through the hierarchy, starting from the root.</li>
+                                <li><strong>Data Integrity:</strong> Inherently enforces referential integrity for parent-child relationships.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Example:</strong> An organizational chart can be represented hierarchically: <code>Company</code> (root) -&gt; <code>Departments</code> (children of Company) -&gt; <code>Employees</code> (children of Departments). An employee belongs to only one department.</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+    </div>
+</body>
+</html>
