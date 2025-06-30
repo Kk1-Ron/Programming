@@ -3,6 +3,17 @@
 <body>
 Made using AI
 
+<h2>
+    Questions
+</h2>
+1. What is OOP? List the characteristics of OOP.
+2. Explain terms polymorphism and inheritance.
+3. What is OOP? List the advantages of OOP.
+4. Why C++ is called object oriented programming language? Explain.
+5. What is procedural oriented programming? Explain.
+6. Differences between procedural programming and object oriented programming.
+7. Write short notes on class and object in OOPs with real-world example.
+
 <h3>Unit 5: Object-Oriented Programming (OOP)</h3>
 
 <h4>1. What is OOP? List the characteristics of OOP.</h4>
@@ -72,24 +83,30 @@ Made using AI
     <li><strong>Real-World Modeling:</strong> OOP's emphasis on objects naturally aligns with how humans perceive and interact with the real world. This makes it easier to design and implement solutions that closely mimic real-world scenarios, leading to more intuitive and understandable software.</li>
 </ul>
 
-<h4>4. What is OOP? List out the advantages of OOP.</h4>
+<h4>4. Why C++ is Called an Object-Oriented Programming Language</h4>
+    <p>C++ is called an object-oriented programming (OOP) language because it supports and implements the core principles of the object-oriented paradigm. These principles allow programmers to model real-world entities as software objects, leading to more modular, reusable, and maintainable code. Here's a breakdown of why C++ fits this description:</p>
 
-<p>(This question is a repeat of question 3. The answer provided for question 3 serves this question as well, encompassing the definition of OOP and its advantages.)</p>
+    <h4>Objects and Classes</h4>
+    <p>At the heart of OOP are objects, which are instances of classes. A <strong>class</strong> is a blueprint or a template that defines the properties (data members) and behaviors (member functions) that an object will have. An <strong>object</strong> is a concrete realization of that class, containing actual data. C++ provides robust mechanisms for defining classes and creating objects from them.</p>
 
-<p>Object-Oriented Programming (OOP) is a programming paradigm centered on the concept of "objects," which are instances of "classes." Each object encapsulates data (attributes) and the functions (methods) that operate on that data into a single, self-contained unit. The fundamental idea behind OOP is to model real-world entities and their interactions, leading to more intuitive, modular, and maintainable software. Rather than focusing on a sequence of actions like procedural programming, OOP emphasizes the structure and behavior of data, promoting a design where independent objects collaborate to achieve a system's goals.</p>
+    <h4>Encapsulation</h4>
+    <p>This principle involves bundling data and the methods that operate on that data within a single unit (the class), and restricting direct access to some of the object's components. C++ enforces encapsulation through access specifiers like <code>public</code>, <code>private</code>, and <code>protected</code>. This protects data from external, unauthorized modification and ensures data integrity.</p>
 
-<p>The significant advantages of adopting an OOP approach in software development include:</p>
+    <h4>Inheritance</h4>
+    <p>Inheritance allows a new class (derived class) to inherit properties and behaviors from an existing class (base class). This promotes code reusability and establishes an "is-a" relationship between classes. C++ supports various forms of inheritance, including single, multiple, hierarchical, and multilevel inheritance, enabling the creation of complex class hierarchies.</p>
 
-<ul>
-    <li><strong>Reusability of Code:</strong> One of the most compelling benefits is the ability to create classes that can be instantiated multiple times, and to inherit functionalities from existing classes. This means common components and logic can be written once and reused across different parts of the application or even in different projects, significantly reducing development time and effort.</li>
-    <li><strong>Enhanced Modularity:</strong> OOP breaks down complex systems into smaller, manageable, and self-contained units (objects). Each object has a specific responsibility and interacts with others through well-defined interfaces. This modularity makes the system easier to design, understand, and manage.</li>
-    <li><strong>Improved Maintainability:</strong> When a system is modular, changes or bug fixes in one part (an object or class) are less likely to affect other parts of the system, provided the public interface remains unchanged. This isolation simplifies maintenance and reduces the risk of introducing unintended side effects, making long-term software support more efficient.</li>
-    <li><strong>Increased Security through Data Hiding/Encapsulation:</strong> Encapsulation, a core OOP principle, allows for data hiding. This means the internal state and implementation details of an object can be protected from direct external access. Data can only be accessed or modified through public methods, preventing unauthorized manipulation and ensuring data integrity and consistency.</li>
-    <li><strong>Better Problem Solving and Design:</strong> OOP encourages developers to think about problems in terms of real-world entities and their interactions. This "object-centric" view often leads to more natural, intuitive, and robust system designs that are easier to map from conceptual models to actual code.</li>
-    <li><strong>Scalability and Flexibility:</strong> OOP paradigms like inheritance and polymorphism make it easier to extend the system with new features or adapt to changing requirements without significant modifications to existing code. New classes can inherit from existing ones, and polymorphic behavior allows for flexible handling of different object types, promoting adaptability and future-proofing.</li>
-    <li><strong>Reduced Complexity:</strong> By abstracting away internal details and focusing on interfaces, OOP helps manage the complexity of large software systems. Developers can work with high-level abstractions without getting bogged down in intricate implementation specifics.</li>
-    <li><strong>Facilitates Parallel Development:</strong> The modular nature of OOP allows different team members to work on separate classes or objects concurrently with minimal conflicts, leading to more efficient team-based development.</li>
-</ul>
+    <h4>Polymorphism</h4>
+    <p>Meaning "many forms," polymorphism allows objects of different classes to be treated as objects of a common type. C++ supports polymorphism primarily through:</p>
+    <ul>
+        <li><strong>Function Overloading:</strong> Allowing multiple functions with the same name but different parameters.</li>
+        <li><strong>Operator Overloading:</strong> Allowing operators to have different meanings based on the context.</li>
+        <li><strong>Virtual Functions:</strong> Enabling runtime polymorphism, where the correct function to be called is determined at runtime based on the actual object type, rather than the reference type. This is crucial for achieving dynamic dispatch.</li>
+    </ul>
+
+    <h4>Abstraction</h4>
+    <p>Abstraction focuses on showing only essential information and hiding the complex implementation details. C++ facilitates abstraction through abstract classes and interfaces (achieved through pure virtual functions). Programmers can define abstract base classes that specify a common interface, and concrete derived classes then provide the specific implementations.</p>
+
+    <p>By effectively implementing these core OOP concepts, C++ empowers developers to design and build software systems that are more organized, scalable, and easier to manage, particularly for large and complex projects. This is why it is consistently classified as an object-oriented programming language.</p>
 
 <h4>5. What is procedural oriented programming? Explain.</h4>
 
@@ -144,5 +161,106 @@ Made using AI
 </ul>
 <p>While OOP has gained significant popularity for its advantages in managing complexity and building large-scale systems, procedural programming is still widely used, especially for smaller scripts, system-level programming, and scenarios where a linear flow of execution is more intuitive. Many modern languages combine aspects of both paradigms, allowing developers to choose the most suitable approach for different parts of a project.</p>
 
+<h4>6. Differences Between Procedural Programming and Object-Oriented Programming</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Feature</th>
+                <th>Procedural Programming</th>
+                <th>Object-Oriented Programming (OOP)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Paradigm</strong></td>
+                <td>Focuses on writing procedures or functions that operate on data.</td>
+                <td>Focuses on creating objects that encapsulate both data and behavior.</td>
+            </tr>
+            <tr>
+                <td><strong>Data &amp; Code</strong></td>
+                <td>Data and functions are separate. Data is often global and can be accessed by any function.</td>
+                <td>Data and functions (methods) are bundled together into objects (encapsulation). Data is typically private to the object.</td>
+            </tr>
+            <tr>
+                <td><strong>Design</strong></td>
+                <td>Top-down approach. Program is divided into smaller functions.</td>
+                <td>Bottom-up approach. Program is designed around objects and their interactions.</td>
+            </tr>
+            <tr>
+                <td><strong>Modularity</strong></td>
+                <td>Achieved through functions.</td>
+                <td>Achieved through classes and objects, promoting high cohesion and loose coupling.</td>
+            </tr>
+            <tr>
+                <td><strong>Reusability</strong></td>
+                <td>Limited reusability, primarily through function calls.</td>
+                <td>High reusability through inheritance and polymorphism.</td>
+            </tr>
+            <tr>
+                <td><strong>Security</strong></td>
+                <td>Less secure, as data can be easily accessed and modified.</td>
+                <td>More secure due to data hiding (encapsulation and access specifiers).</td>
+            </tr>
+            <tr>
+                <td><strong>Complexity</strong></td>
+                <td>Can become complex for large programs due to global data and inter-function dependencies.</td>
+                <td>Manages complexity better for large systems by breaking them into manageable objects.</td>
+            </tr>
+            <tr>
+                <td><strong>Example Languages</strong></td>
+                <td>C, Pascal, Fortran</td>
+                <td>C++, Java, Python, C#</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h4>7. Short Notes on Class and Object in OOPs with Real-World Example</h4>
+
+    <h5>Class:</h5>
+    <p>In Object-Oriented Programming, a <strong>class</strong> serves as a blueprint, template, or prototype from which objects are created. It defines a common structure (attributes or properties) and behavior (methods or functions) that all objects of that type will possess. A class does not occupy memory when it is defined; it's merely a logical construct. Think of a class as the design specifications for building something.</p>
+
+    <h5>Object:</h5>
+    <p>An <strong>object</strong> is an instance of a class. It is a concrete entity that is created based on the specifications defined by its class. When an object is created, memory is allocated for it, and it contains actual data values for the attributes defined in its class, along with the ability to perform the behaviors (methods) specified by that class. Objects are the real-world entities that interact within a program.</p>
+
+    <h5>Real-World Example: "Car"</h5>
+    <div class="example-box">
+        <p>Consider the concept of a "Car."</p>
+        <ul>
+            <li><strong>Class:</strong> As a class, "Car" would define common attributes that all cars share, such as:
+                <ul>
+                    <li><strong>Attributes (Properties):</strong> <code>color</code>, <code>make</code>, <code>model</code>, <code>year</code>, <code>engineType</code>, <code>numberOfDoors</code>.</li>
+                    <li><strong>Behaviors (Methods):</strong> <code>startEngine()</code>, <code>stopEngine()</code>, <code>accelerate()</code>, <code>brake()</code>, <code>turnLeft()</code>, <code>turnRight()</code>.</li>
+                </ul>
+                The "Car" class is a general design that describes what a car is and what it can do.
+            </li>
+            <li><strong>Objects:</strong> Based on the "Car" class, you can create specific, individual car objects. For example:
+                <ul>
+                    <li><strong>Object 1 (myCar):</strong>
+                        <ul>
+                            <li><code>color: "Red"</code></li>
+                            <li><code>make: "Honda"</code></li>
+                            <li><code>model: "Civic"</code></li>
+                            <li><code>year: 2022</code></li>
+                            <li><code>engineType: "Petrol"</code></li>
+                            <li><code>numberOfDoors: 4</code></li>
+                        </ul>
+                        This object can <code>startEngine()</code>, <code>accelerate()</code>, etc.
+                    </li>
+                    <li><strong>Object 2 (yourCar):</strong>
+                        <ul>
+                            <li><code>color: "Blue"</code></li>
+                            <li><code>make: "Toyota"</code></li>
+                            <li><code>model: "Camry"</code></li>
+                            <li><code>year: 2023</code></li>
+                            <li><code>engineType: "Hybrid"</code></li>
+                            <li><code>numberOfDoors: 4</code></li>
+                        </ul>
+                        This object also can <code>startEngine()</code>, <code>accelerate()</code>, etc.
+                    </li>
+                </ul>
+                In this example, "Car" is the class (the blueprint), and "myCar" and "yourCar" are distinct objects (individual instances) created from that blueprint, each with its own unique set of attribute values.
+            </li>
+        </ul>
+    </div>
 </body>
 </html>
