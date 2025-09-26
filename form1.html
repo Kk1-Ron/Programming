@@ -1,0 +1,71 @@
+<html>
+<head>
+    <title>DOM Manipulation and Event Handling</title>
+</head>
+<body>
+    <div>
+        <h3>DOM Manipulation and Event Handling Task</h3>
+    </div>
+
+    <form name="form1" id="calcForm">
+        <div>
+            <label>Number 1:</label>
+            <input type="number" name="num1" id="num1" value="">
+        </div>
+        <br>
+
+        <div>
+            <label>Number 2:</label>
+            <input type="number" name="num2" id="num2" value="">
+        </div>
+        <br>
+
+        <div>
+            <button type="button" id="add" style="color:green" onclick="sum()">ADD</button>
+            <button type="button" id="sub" style="color:red" onclick="subtract()">SUBTRACT</button>
+            <button type="button" id="mul" style="color:blue" onclick="multiply()">MULTIPLY</button>
+            <br><br>
+            <button type="button" id="div" style="color:orange" onclick="divide()">DIVIDE</button>
+            <button type="button" id="mod" style="color:pink" onclick="modulus()">MODULUS</button>
+        </div>
+        <br>
+
+        <div>
+            <label>Result:</label>
+            <input type="number" name="result" id="result" value="">    
+        </div>
+    </form>
+
+    <script>
+        function sum() {
+            var num1 = parseInt(document.form1.num1.value);
+            var num2 = parseInt(document.form1.num2.value);
+            document.getElementById("result").value = num1 + num2;
+        }
+
+        function subtract() {
+            var num1 = parseInt(document.form1.num1.value);
+            var num2 = parseInt(document.form1.num2.value);
+            document.getElementById("result").value = num1 - num2;
+        }
+
+        function multiply() {
+            var num1 = parseInt(document.form1.num1.value);
+            var num2 = parseInt(document.form1.num2.value);
+            document.getElementById("result").value = num1 * num2;
+        }
+
+        function divide() {
+            var num1 = parseInt(document.form1.num1.value);
+            var num2 = parseInt(document.form1.num2.value);
+            document.getElementById("result").value = num1 / num2;
+        }
+
+        function modulus() {
+            var num1 = parseInt(document.form1.num1.value);
+            var num2 = parseInt(document.form1.num2.value);
+            document.getElementById("result").value = num1 % num2;
+        }
+    </script>
+</body>
+</html>
